@@ -1,0 +1,17 @@
+.wrap-header {
+    margin: 0px auto;
+    width: 900px;
+    display: flex;
+}
+
+.menu-header {
+    display: flex;
+    align-items: center;
+    padding-left: 90px;
+}
+.menu-text {
+    margin-right: 30px;
+    color: #18ab84;
+    font-weight: bolder;
+    font-size: 20px;
+}

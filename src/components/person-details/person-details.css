@@ -1,0 +1,36 @@
+.wrap-personDetails {
+    padding: 0;
+    margin: 0;
+    width: 425px;
+    background-color: #373838;
+    border-radius: 5px;
+    display: flex;
+}
+
+.img-personDetails {
+    width: 120px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.name-personDetails {
+    font-size: 30px;
+}
+.info-personDetails {
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.details-personDetails li {
+    width: 230px;
+    list-style-type: none;
+    margin: 0 0 0 -30px;
+    padding: 5px;
+    border: solid #626464;
+    border-width: 1px 0 0 0;
+}
+.details-personDetails li:hover {
+    background-color: #616262;
+    cursor: pointer;
+}

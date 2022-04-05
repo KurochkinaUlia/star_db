@@ -1,0 +1,28 @@
+.wrap-itemList {
+    padding: 0;
+    margin: 0;
+    width: 425px;
+    background-color: #373838;
+    border-radius: 5px;
+    border: 1px solid #626464;
+}
+
+.ul-wrap {
+    padding: 0;
+    margin: 0;
+}
+
+.ul-wrap li {
+    padding: 10px;
+    list-style-type: none;
+    border: solid #626464;
+    border-width: 0 0 1px 0;
+}
+
+.ul-wrap li:last-of-type {
+    border-width: 0;
+}
+.ul-wrap li:hover {
+    background-color: #616262;
+    cursor: pointer;
+}
