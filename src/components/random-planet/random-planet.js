@@ -1,24 +1,54 @@
 import './random-planet.css';
+import {Component} from "react";
+import SwapiService from "../../services/swapi-service";
 
-const RandomPlanet = () => {
-    return (
-        <div className='wrap-randomPlanet'>
+class RandomPlanet extends Component {
 
-            <img className='img-randomPlanet'
-                 src='https://pm1.narvii.com/7385/ce3308d9945af447637bb3a4fd362a45fa9d4865r1-2048-1365v2_uhq.jpg'
-                 alt='planet'
-            />
+    swapiService = new SwapiService();
 
-            <div className='info-planet'>
-                <div className='name-planet'> Hoth </div>
-                <ul className='details-planet'>
-                    <li>Population unknown</li>
-                    <li>Rotation Period 23</li>
-                    <li>Diameter 7200</li>
-                </ul>
+    state = {
+        planet: {}
+    };
+
+    constructor() {
+        super();
+        this.updatePlanet();
+    }
+
+    onPlanetLoaded = (planet) => {
+        this.setState({planet});
+    };
+
+    updatePlanet() {
+        const id = Math.floor(Math.random()*25) + 2;
+        this.swapiService
+            .getPlanet(id)
+            .then(this.onPlanetLoaded);
+
+    }
+
+    render() {
+        const { planet: {id, name, population, rotationPeriod, diameter}} = this.state
+        return (
+            <div className='wrap-randomPlanet'>
+
+                <img className='img-randomPlanet'
+                     src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+                     alt='planet'
+                />
+
+                <div className='info-planet'>
+                    <div className='name-planet'> {name} </div>
+                    <ul className='details-planet'>
+                        <li>Population {population} </li>
+                        <li>Rotation Period {rotationPeriod}</li>
+                        <li>Diameter {diameter}</li>
+                    </ul>
+                </div>
+
             </div>
-
-        </div>
-    )
+        )
+    }
 }
+
 export default RandomPlanet;

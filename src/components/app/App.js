@@ -13,14 +13,12 @@ const App = () => {
             <RandomPlanet/>
             <div className='wrap'>
                 <div className='wrap-item'>
-                <ItemList/>
-                </div >
+                    <ItemList/>
+                </div>
                 <div className='wrap-item'>
-                <PersonDetails/>
+                    <PersonDetails/>
                 </div>
             </div>
-
-
         </div>
     )
 }
