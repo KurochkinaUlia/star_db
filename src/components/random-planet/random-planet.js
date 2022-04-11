@@ -11,13 +11,11 @@ class RandomPlanet extends Component {
         planet: {}
     };
 
-
-
-
     componentDidMount() {
         this.updatePlanet();
         setInterval(this.updatePlanet, 5000);
     }
+
 
     onPlanetLoaded = (planet) => {
         this.setState({planet});
@@ -25,14 +23,13 @@ class RandomPlanet extends Component {
 
     updatePlanet = () => {
         const id = Math.floor(Math.random()*25) + 2;
-
-
         this.swapiService
             .getPlanet(id)
             .then(this.onPlanetLoaded);
     }
 
     render() {
+
         const { planet: {id, name, population, rotationPeriod, diameter}} = this.state
         return (
 

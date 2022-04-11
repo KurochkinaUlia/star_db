@@ -9,7 +9,7 @@ class ItemList extends Component {
 
     state = {
         peopleList: null,
-
+        itemId: null
     };
 
     componentDidMount() {
@@ -22,27 +22,36 @@ class ItemList extends Component {
             });
     }
 
+    onClickItem = (id) => {
+        this.props.onItemSelected(id)
+        this.setState({
+                itemId: id
+            }
+        )
+    }
+
     nameList = (arr) => {
-        return arr.map((n) => {
+
+        return arr.map(({id, name}) => {
             return (
-                <li key={n.id}>
-                    <a>
-                        {n.name}
-                    </a>
+                <li key={id}
+                    onClick={() => this.onClickItem(id)}
+                    className={`${this.state.itemId === id ? 'listActive' : ''}`}>
+                    {name}
                 </li>
             );
         });
     }
 
+
     render() {
+
 
         const {peopleList} = this.state;
         if (!peopleList) {
             return <Spinner/>;
         }
-
         const items = this.nameList(peopleList);
-
         return (
             <div className='wrap-itemList'>
                 <ul className='ul-wrap'>

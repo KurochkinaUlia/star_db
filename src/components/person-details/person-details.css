@@ -34,3 +34,7 @@
     background-color: #616262;
     cursor: pointer;
 }
+
+.spinner {
+    margin: 0 auto;
+}
