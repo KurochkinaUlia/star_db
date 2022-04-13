@@ -9,28 +9,33 @@ class PersonDetails extends Component {
     swapiService = new SwapiService();
 
     state = {
-        person: {}
+        person: {},
+        isLoading: undefined
     };
 
     componentDidMount() {
-        console.log('дид маунт')
         this.updatePerson();
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('дид упдэйт props', prevProps, '---', this.props)
         if (prevProps.personId !== this.props.personId) {
+            this.setState({
+                isLoading: true
+            })
             this.updatePerson();
         }
+
     }
 
     onPersonDetails = (person) => {
-        this.setState({person});
+        this.setState({
+            person,
+            isLoading: false
+        });
     };
 
     updatePerson = () => {
         const id = this.props.personId;
-        console.log('id-updatePerson', this.props.personId);
         if (id) {
             this.swapiService
                 .getPerson(id)
@@ -40,14 +45,25 @@ class PersonDetails extends Component {
 
     render() {
         const {person: {id, name, gender, birthYear, eyeColor }} = this.state
-        console.log('PersonDetails-state', this.state)
-        if (!id) {
+        if (!id && !this.state.isLoading) {
             return (
                 <div className='wrap-personDetails'>
-
                     <div className='spinner'>
-                        <Spinner/>
+
                         <div>Выбери персонажа</div>
+
+                    </div>
+                </div>
+
+            )
+        }
+        if (this.state.isLoading  ) {
+            return (
+                <div className='wrap-personDetails'>
+                    <div className='spinner'>
+
+                        <div><Spinner/></div>
+
                     </div>
                 </div>
 
